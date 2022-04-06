@@ -42,7 +42,7 @@ export default function UserInfo({ path }: { path: string }) {
   );
 }
 
-function handleHelpPress() {
+function handleHelpPress() { 
   WebBrowser.openBrowserAsync(
     'https://docs.expo.io/get-started/create-a-new-app/#opening-the-app-on-your-phonetablet'
   );
@@ -76,4 +76,4 @@ const styles = StyleSheet.create({
   helpLinkText: {
     textAlign: 'center',
   },
-});
+});// testando 
