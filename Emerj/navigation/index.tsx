@@ -46,6 +46,9 @@ function RootNavigator() {
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
       </Stack.Group>
+      <Stack.Group screenOptions={{ presentation: 'modal' }}>
+        <Stack.Screen name="Settings" component={SettingsScreen} />
+      </Stack.Group>
     </Stack.Navigator>
   );
 }
@@ -64,12 +67,16 @@ function BottomTabNavigator() {
       initialRouteName="TabOne"
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
+        headerShown: true,
       }}>
       <BottomTab.Screen
         name="TabOne"
         component={TabOneScreen}
         options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
-          title: 'Tab One',
+            headerStyle: (props:any) => <ImageLogo {...props} />,
+            headerStyle:{ 
+            backgroundColor: "#8190a5",
+          },
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
           headerRight: () => (
             <Pressable
@@ -98,14 +105,37 @@ function BottomTabNavigator() {
       <BottomTab.Screen
         name="User"
         component={UserScreen}
-        options={{
+        options={({ navigation}: RootTabScreenProps<'User'>) => ({
           title: 'Usuário',
           tabBarIcon: ({ color }) => <TabBarIcon name="user" color={color} />,
-        }}
+           headerRight:() =>(
+            <Pressable 
+            onPress={ () => navigation.navigate('Settings')}
+            style={({pressed}) => ({
+              opacity: pressed ? 0.5 : 1,
+            })}
+            >
+              <FontAwesome
+                name="cog"
+                size={25}
+                color={Colors[colorScheme].text}
+                style={{ marginRight: 15 }}
+              />
+
+             
+            </Pressable>
+
+           ),
+        })}
+
+
+        
+
+
       />
 
 
-
+        
     </BottomTab.Navigator>
   );
 }
