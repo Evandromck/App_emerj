@@ -1,0 +1,3 @@
+npm install styled-components       2 aula 38:45
+
+npm install i @types/styled-components-react-native 
